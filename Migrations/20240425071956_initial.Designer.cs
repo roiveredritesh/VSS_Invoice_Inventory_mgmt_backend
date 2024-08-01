@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice_Inventory_mgmt.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240315102908_initial")]
+    [Migration("20240425071956_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -65,13 +65,11 @@ namespace Invoice_Inventory_mgmt.Migrations
 
             modelBuilder.Entity("Invoice_Inventory_mgmt.Model.CityMaster", b =>
                 {
-                    b.HasOne("Invoice_Inventory_mgmt.Model.StateMaster", "stateMaster")
+                    b.HasOne("Invoice_Inventory_mgmt.Model.StateMaster", null)
                         .WithMany("CityMasters")
                         .HasForeignKey("StateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("stateMaster");
                 });
 
             modelBuilder.Entity("Invoice_Inventory_mgmt.Model.StateMaster", b =>

@@ -11,5 +11,6 @@ namespace Invoice_Inventory_mgmt.Model
 
         [ForeignKey("StateID")]
         public ICollection<CityMaster> CityMasters { get; set; }
+
     }
 }

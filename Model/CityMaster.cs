@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoice_Inventory_mgmt.Model
 {
@@ -7,9 +8,8 @@ namespace Invoice_Inventory_mgmt.Model
         [Key]
         public int CityID { get; set; }
         public string CityName { get; set; }
-
         public int StateID { get; set; }
-        public StateMaster? stateMaster { get; set; }
-       
+
+
     }
 }
