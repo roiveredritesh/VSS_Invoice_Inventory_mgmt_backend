@@ -1,0 +1,39 @@
+name: Jira Ticket Planning
+
+on:
+  repository_dispatch:
+    types: [jira_planning]
+
+jobs:
+  plan-ticket:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install @aws-sdk/client-bedrock-runtime
+
+      - name: Generate Plan
+        env:
+          BEDROCK_API_KEY: ${{ secrets.BEDROCK_API_KEY }}
+          SUMMARY: ${{ github.event.client_payload.summary }}
+          DESCRIPTION: ${{ github.event.client_payload.description }}
+          ACCEPTANCE: ${{ github.event.client_payload.acceptance }}
+        run: |
+          node scripts/generate-plan.js
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jira-plan
+          path: plan.md
