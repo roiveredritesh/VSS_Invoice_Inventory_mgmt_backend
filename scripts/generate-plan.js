@@ -1,7 +1,7 @@
 import fs from "fs"
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime"
 
-const promptTemplate = fs.readFileSync("ai/prompts/jira-planning.prompt.md", "utf8")
+const promptTemplate = fs.readFileSync("prompts/jira-planning.prompt.md", "utf8")
 
 const prompt = promptTemplate
   .replace("{{SUMMARY}}", process.env.SUMMARY || "")
